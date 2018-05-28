@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux'
 
+
+import {RECEIVE_SUBURBS} from "../actions"
+
+
 const SUBURBS = [{
   name: "Alexandria",
   count: 10,
@@ -47,6 +51,11 @@ const suburbs = (state = {
   suburbs: SUBURBS
 },action) => {
   switch(action.type) {
+    case RECEIVE_SUBURBS:
+      return {
+        suburbs:action.suburbs
+      }
+      state;
     default:
       return state;
   }

@@ -6,10 +6,23 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers'
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
+import {fetchSuburbs} from "./actions"
+
+const loggerMiddleware = createLogger()
 
 const store = createStore(
-  reducer
+  reducer,
+  applyMiddleware(
+    thunkMiddleware, // lets us dispatch() functions
+    loggerMiddleware // neat middleware that logs actions
+  )
 )
+
+store
+  .dispatch(fetchSuburbs())
+  .then(() => console.log(store.getState()))
 
 ReactDOM.render(
   <Provider store={store}>
