@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 import NavigationComponent from './component/NavigationComponent';
 import AllSuburbsContainer from './container/AllSuburbsContainer';
+
+const PropertyList = ({match}) => {
+  return <h1>"My property list would be here" {match.params.suburb}</h1>
+}
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <NavigationComponent />
-        <AllSuburbsContainer suburbs={this.props.suburbs} />
+        <Route exact path="/" render={() => <AllSuburbsContainer suburbs={this.props.suburbs} />} />
+        <Route path="/properties/:suburb" component={PropertyList} />
       </div>
     );
   }
