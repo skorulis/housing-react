@@ -9,6 +9,7 @@ import reducer from './reducers'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import {fetchSuburbs} from "./actions"
+import { BrowserRouter } from 'react-router-dom'
 
 const loggerMiddleware = createLogger()
 
@@ -26,7 +27,9 @@ store
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
     , document.getElementById('root')
   );
