@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavigationComponent />
-        <Route exact path="/" render={() => <AllSuburbsContainer suburbs={this.props.suburbs} />} />
+        <Route exact path="/" render={() => <AllSuburbsContainer  />} />
         <Route path="/properties/:suburb" component={PropertyList} />
       </div>
     );

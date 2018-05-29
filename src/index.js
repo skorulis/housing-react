@@ -8,7 +8,6 @@ import { createLogger } from 'redux-logger'
 import createHistory from 'history/createBrowserHistory'
 import { routerReducer, routerMiddleware, ConnectedRouter } from 'react-router-redux'
 
-import {fetchSuburbs} from "./actions"
 import suburbReducer from "./reducers/suburbReducer"
 import App from './App';
 
@@ -32,10 +31,6 @@ const store = createStore(
     historyMiddleware
   )
 )
-
-/*store
-  .dispatch(fetchSuburbs())
-  .then(() => console.log(store.getState()))*/
 
 ReactDOM.render(
   <Provider store={store}>

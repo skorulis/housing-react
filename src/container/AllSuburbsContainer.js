@@ -1,5 +1,7 @@
 import React from 'react';
 import SuburbComponent from "../component/SuburbComponent"
+import {fetchSuburbs} from "../actions"
+import { connect } from 'react-redux'
 
 class AllSuburbsContainer extends React.Component {
   render() {
@@ -10,7 +12,16 @@ class AllSuburbsContainer extends React.Component {
         
       </ul>
   }
+
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(fetchSuburbs())
+  }
 }
 
-export default AllSuburbsContainer;
+const mapStateToProps = state => {
+  return {suburbs:state.suburbs.suburbs}
+}
+
+export default connect(mapStateToProps)(AllSuburbsContainer);
 
