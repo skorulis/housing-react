@@ -2,17 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import reducers from './reducers'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import {fetchSuburbs} from "./actions"
-import { BrowserRouter } from 'react-router-dom'
-
 import createHistory from 'history/createBrowserHistory'
 import { routerReducer, routerMiddleware, ConnectedRouter } from 'react-router-redux'
+
+import {fetchSuburbs} from "./actions"
+import suburbReducer from "./reducers/suburbReducer"
+import App from './App';
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -20,6 +18,11 @@ const history = createHistory()
 const historyMiddleware = routerMiddleware(history)
 
 const loggerMiddleware = createLogger()
+
+const reducers = combineReducers({
+  suburbs:suburbReducer,
+  router: routerReducer
+})
 
 const store = createStore(
   reducers,
@@ -30,15 +33,15 @@ const store = createStore(
   )
 )
 
-store
+/*store
   .dispatch(fetchSuburbs())
-  .then(() => console.log(store.getState()))
+  .then(() => console.log(store.getState()))*/
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>
     , document.getElementById('root')
   );

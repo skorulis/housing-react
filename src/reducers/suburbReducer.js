@@ -51,7 +51,6 @@ const suburbs = (state = {
       return {
         suburbs:action.suburbs
       }
-      state;
     default:
       return state;
   }

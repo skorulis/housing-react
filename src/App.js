@@ -23,8 +23,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
-  return {suburbs:state.suburbs.suburbs}
+  return {suburbs:state.suburbs.suburbs,router:state.router}
 }
 
 export default connect(mapStateToProps)(App)
