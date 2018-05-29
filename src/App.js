@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router-dom'
 
@@ -24,6 +23,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {suburbs:state.suburbs.suburbs}
 }
 

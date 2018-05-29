@@ -3,9 +3,9 @@ import SuburbComponent from "../component/SuburbComponent"
 
 class AllSuburbsContainer extends React.Component {
   render() {
-    return <ul>
+    return <ul key="all-suburbs">
         {this.props.suburbs.map((suburb) => {
-          return <SuburbComponent suburb={suburb} />
+          return <SuburbComponent key={suburb.name} suburb={suburb} />
         })}
         
       </ul>
