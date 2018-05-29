@@ -5,10 +5,7 @@ import { Route } from 'react-router-dom'
 
 import NavigationComponent from './component/NavigationComponent';
 import AllSuburbsContainer from './container/AllSuburbsContainer';
-
-const PropertyList = ({match}) => {
-  return <h1>"My property list would be here" {match.params.suburb}</h1>
-}
+import PropertyListContainer from './container/PropertyListContainer';
 
 class App extends Component {
   render() {
@@ -16,7 +13,7 @@ class App extends Component {
       <div className="App">
         <NavigationComponent />
         <Route exact path="/" render={() => <AllSuburbsContainer  />} />
-        <Route path="/properties/:suburb" component={PropertyList} />
+        <Route path="/properties/:suburb" component={PropertyListContainer} />
       </div>
     );
   }

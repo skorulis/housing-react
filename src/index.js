@@ -9,6 +9,7 @@ import createHistory from 'history/createBrowserHistory'
 import { routerReducer, routerMiddleware, ConnectedRouter } from 'react-router-redux'
 
 import suburbReducer from "./reducers/suburbReducer"
+import propertiesReducer from "./reducers/propertiesReducer"
 import App from './App';
 
 // Create a history of your choosing (we're using a browser history in this case)
@@ -20,6 +21,7 @@ const loggerMiddleware = createLogger()
 
 const reducers = combineReducers({
   suburbs:suburbReducer,
+  properties:propertiesReducer,
   router: routerReducer
 })
 
