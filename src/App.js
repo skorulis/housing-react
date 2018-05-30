@@ -7,13 +7,17 @@ import NavigationComponent from './component/NavigationComponent';
 import AllSuburbsContainer from './container/AllSuburbsContainer';
 import PropertyListContainer from './container/PropertyListContainer';
 
+const PropertyListRouteComponent = ({match}) => (
+  <PropertyListContainer suburbName={match.params.suburb}  />
+);
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <NavigationComponent />
         <Route exact path="/" render={() => <AllSuburbsContainer  />} />
-        <Route path="/properties/:suburb" component={PropertyListContainer} />
+        <Route path="/properties/:suburb" component={PropertyListRouteComponent} />
       </div>
     );
   }

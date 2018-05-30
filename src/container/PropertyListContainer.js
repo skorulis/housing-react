@@ -5,16 +5,21 @@ import { fetchProperties } from '../actions';
 
 class PropertyListContainer extends React.Component {
   render() {
-    return <ul key="properties">
+    return <div>
+      <h2>Properties for {this.props.suburbName}</h2>
+      <ul key="properties">
         {this.props.properties.map((p) => {
           return <PropertyComponent key={p.id} property={p} />
         })}
       </ul>
+    </div>
+    
+    
   }
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchProperties("Alexandria"))
+    dispatch(fetchProperties(this.props.suburbName))
   }
 }
 

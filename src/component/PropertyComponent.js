@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 
 class PropertyComponent extends React.Component {
   render() {
+    let property = this.props.property;
     return <li >
-        <a href={this.props.property.url}>Full details</a>
+      <img src={property.image} />
+        <a href={property.url}>{property.address}</a>
         
       </li>
   }
