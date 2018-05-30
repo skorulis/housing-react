@@ -1,15 +1,14 @@
 export const RECEIVE_SUBURBS = 'RECEIVE_SUBURBS';
+
 export const RECIEVE_PROPERTIES = 'RECIEVE_PROPERTIES';
+export const EDIT_PROPERTY = 'EDIT_PROPERTY';
+export const EDIT_PROPERTY_CANCEL = 'EDIT_PROPERTY_CANCEL';
+export const EDIT_PROPERTY_SAVE = 'EDIT_PROPERTY_SAVE';
 
 function receiveSuburbs(json) {
-    let suburbs = [];
-    for (let key in json) {
-        suburbs.push(json[key])
-    }
-
     return {
         type: RECEIVE_SUBURBS,
-        suburbs: suburbs,
+        suburbs: json,
         recievedAt: Date.now()
     }
 }
@@ -21,6 +20,22 @@ function receiveProperties(json) {
         recievedAt: Date.now()
     }
 }
+
+export const editProperty = (propertyId) => {
+    return {
+        type:EDIT_PROPERTY,
+        propertyId:propertyId
+    }
+}
+
+export const editPropertyCancel = (propertyId) => {
+    return {
+        type:EDIT_PROPERTY_CANCEL,
+        propertyId:propertyId
+    }
+}
+
+//export const boundEditProperty = propertyId => dispatch(editProperty(propertyId));
 
 export const fetchSuburbs = () => dispatch => {
     return fetch(`http://localhost:7900/suburbs`)

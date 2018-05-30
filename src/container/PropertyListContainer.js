@@ -9,7 +9,7 @@ class PropertyListContainer extends React.Component {
       <h2>Properties for {this.props.suburbName}</h2>
       <ul key="properties">
         {this.props.properties.map((p) => {
-          return <PropertyComponent key={p.id} property={p} />
+          return <PropertyComponent key={p.id} property={p} dispatch={this.props.dispatch} />
         })}
       </ul>
     </div>
