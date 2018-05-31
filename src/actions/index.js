@@ -5,6 +5,8 @@ export const EDIT_PROPERTY = 'EDIT_PROPERTY';
 export const EDIT_PROPERTY_CANCEL = 'EDIT_PROPERTY_CANCEL';
 export const EDIT_PROPERTY_SAVE = 'EDIT_PROPERTY_SAVE';
 
+export const UPDATE_PROPERTY_FIELD = "UPDATE_PROPERTY_FIELD";
+
 function receiveSuburbs(json) {
     return {
         type: RECEIVE_SUBURBS,
@@ -32,6 +34,15 @@ export const editPropertyCancel = (propertyId) => {
     return {
         type:EDIT_PROPERTY_CANCEL,
         propertyId:propertyId
+    }
+}
+
+export const updatePropertyField = (propertyId,field,value) => {
+    return {
+        type:UPDATE_PROPERTY_FIELD,
+        propertyId:propertyId,
+        field:field,
+        value:value
     }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {editProperty, editPropertyCancel} from "../actions"
+import {editProperty, editPropertyCancel, updatePropertyField} from "../actions"
 
 class EditPropertyComponent extends React.Component {
     handleEditClick = (e) => {
@@ -13,7 +13,14 @@ class EditPropertyComponent extends React.Component {
     }
 
     handleSaveClick = e => {
+        const {dispatch, property} = this.props
+        dispatch(editPropertyCancel(property.id))
+    }
 
+    handleEliminatedChanged = e => {
+        const {dispatch, property} = this.props
+        console.log(e.target.value)
+        dispatch(updatePropertyField(property.id,"eliminated",e.target.value));
     }
 
     render() {
@@ -21,8 +28,11 @@ class EditPropertyComponent extends React.Component {
         let key = property.id + (property.isEditing ? "editing" : "plain");
         if (property.isEditing) {
             return <div key={key}>
-                <button onClick={this.handleCancelClick}>Cancel</button>
-                <button onClick={this.handleSaveClick}>Save</button> 
+            <button onClick={this.handleCancelClick}>Cancel</button>
+            <button onClick={this.handleSaveClick}>Save</button>
+            <br/>
+            Eliminated reason: <input value={property.eliminated} onChange={this.handleEliminatedChanged} />
+                
             </div>
         } else {
             return <div key={key}>
