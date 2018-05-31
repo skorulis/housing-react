@@ -1,8 +1,6 @@
 export const RECEIVE_SUBURBS = 'RECEIVE_SUBURBS';
 
 export const RECIEVE_PROPERTIES = 'RECIEVE_PROPERTIES';
-export const EDIT_PROPERTY = 'EDIT_PROPERTY';
-export const EDIT_PROPERTY_CANCEL = 'EDIT_PROPERTY_CANCEL';
 export const EDIT_PROPERTY_SAVE = 'EDIT_PROPERTY_SAVE';
 
 export const UPDATE_PROPERTY_FIELD = "UPDATE_PROPERTY_FIELD";
@@ -22,20 +20,6 @@ function receiveProperties(json) {
         type: RECIEVE_PROPERTIES,
         properties:json,
         recievedAt: Date.now()
-    }
-}
-
-export const editProperty = (propertyId) => {
-    return {
-        type:EDIT_PROPERTY,
-        propertyId:propertyId
-    }
-}
-
-export const editPropertyCancel = (propertyId) => {
-    return {
-        type:EDIT_PROPERTY_CANCEL,
-        propertyId:propertyId
     }
 }
 
