@@ -7,6 +7,8 @@ export const EDIT_PROPERTY_SAVE = 'EDIT_PROPERTY_SAVE';
 
 export const UPDATE_PROPERTY_FIELD = "UPDATE_PROPERTY_FIELD";
 
+export const REPLACE_PROPERTY = "REPLACE_PROPERTY";
+
 function receiveSuburbs(json) {
     return {
         type: RECEIVE_SUBURBS,
@@ -46,7 +48,12 @@ export const updatePropertyField = (propertyId,field,value) => {
     }
 }
 
-//export const boundEditProperty = propertyId => dispatch(editProperty(propertyId));
+export const replaceProperty = (property) => {
+    return {
+        type:REPLACE_PROPERTY,
+        property:property
+    }
+}
 
 export const fetchSuburbs = () => dispatch => {
     return fetch(`http://localhost:7900/suburbs`)
@@ -63,6 +70,10 @@ return fetch(url)
 
 export const setPropertyFields = (property) => dispatch => {
     let url = property.links.setFields;
-    return fetch(url,{method:'post',body:JSON.stringify(property)})
+    return fetch(url,
+        {method:'post',
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(property)})
     .then(response => response.json())
+    .then(json => dispatch(replaceProperty(json)))
 }

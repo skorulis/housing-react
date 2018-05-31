@@ -1,4 +1,13 @@
-import {RECIEVE_PROPERTIES,EDIT_PROPERTY, EDIT_PROPERTY_CANCEL, EDIT_PROPERTY_SAVE, UPDATE_PROPERTY_FIELD} from "../actions"
+import {RECIEVE_PROPERTIES,EDIT_PROPERTY, EDIT_PROPERTY_CANCEL, EDIT_PROPERTY_SAVE, UPDATE_PROPERTY_FIELD, REPLACE_PROPERTY} from "../actions"
+
+const propertyIndex = (propertyId,properties) => {
+  for(let i = 0; i < properties.length; ++i) {
+    if (properties[i].id === propertyId) {
+      return i;
+    }
+  }
+  return -1;
+}
 
 const findProperty = (propertyId,properties) => {
   return properties.filter( (p) => p.id === propertyId)[0];
@@ -28,15 +37,17 @@ const properties = (state = {
         return changeProperty(action.propertyId,state.properties,"isEditing",false);
       case EDIT_PROPERTY_SAVE:
       {
-        let properties = state.properties.slice();
-        let prop = findProperty(action.propertyId,properties)
-        prop.isEditing = false;
-        return {properties:properties};
+        return state;
       }
       case UPDATE_PROPERTY_FIELD:
       {
         return changeProperty(action.propertyId,state.properties,action.field,action.value);
       }
+      case REPLACE_PROPERTY:
+        let index = propertyIndex(action.property.id,state.properties)
+        let properties = state.properties.slice();
+        properties[index] = action.property;
+        return {properties:properties};
       default:
         return state;
     }
