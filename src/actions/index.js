@@ -60,3 +60,9 @@ return fetch(url)
     .then(response => response.json())
     .then(json => dispatch(receiveProperties(json)))
 }
+
+export const setPropertyFields = (property) => dispatch => {
+    let url = property.links.setFields;
+    return fetch(url,{method:'post',body:JSON.stringify(property)})
+    .then(response => response.json())
+}
