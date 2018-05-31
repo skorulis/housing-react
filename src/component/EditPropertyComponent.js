@@ -18,13 +18,14 @@ class EditPropertyComponent extends React.Component {
 
     render() {
         let property = this.props.property;
+        let key = property.id + (property.isEditing ? "editing" : "plain");
         if (property.isEditing) {
-            return <div>
+            return <div key={key}>
                 <button onClick={this.handleCancelClick}>Cancel</button>
                 <button onClick={this.handleSaveClick}>Save</button> 
             </div>
         } else {
-            return <div>
+            return <div key={key}>
                 <button onClick={this.handleEditClick}>Edit</button> 
             </div>
         }

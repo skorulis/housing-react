@@ -14,15 +14,17 @@ const properties = (state = {
         }
       case EDIT_PROPERTY:
       {
-        let prop = findProperty(action.propertyId,state.properties)
+        let properties = state.properties.slice();
+        let prop = findProperty(action.propertyId,properties)
         prop.isEditing = true;
-        return state;
+        return {properties:properties};
       }
       case EDIT_PROPERTY_CANCEL:
       {
-        let prop = findProperty(action.propertyId,state.properties)
+        let properties = state.properties.slice();
+        let prop = findProperty(action.propertyId,properties)
         prop.isEditing = false;
-        return state;
+        return {properties:properties};
       }
       default:
         return state;
