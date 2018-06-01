@@ -13,8 +13,6 @@ class PropertyListContainer extends React.Component {
         })}
       </ul>
     </div>
-    
-    
   }
 
   componentDidMount() {

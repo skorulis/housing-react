@@ -12,6 +12,9 @@ class PropertyComponent extends React.Component {
         <a href={property.url}>{property.address}</a>
         <p>Score: {property.score}</p>
         <p>Simple score: {property.simpleScore} </p>
+        {property.travel.map((t) => {
+          return <p>{t.name}: {t.duration} Minutes</p>
+        })}
       </div>
       <EditPropertyComponent key={editKey} property={property} dispatch={this.props.dispatch} />
         
