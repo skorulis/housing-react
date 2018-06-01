@@ -7,6 +7,8 @@ export const UPDATE_PROPERTY_FIELD = "UPDATE_PROPERTY_FIELD";
 
 export const REPLACE_PROPERTY = "REPLACE_PROPERTY";
 
+export const RECIEVE_INSPECTIONS = "RECIEVE_INSPECTIONS";
+
 function receiveSuburbs(json) {
     return {
         type: RECEIVE_SUBURBS,
@@ -19,6 +21,14 @@ function receiveProperties(json) {
     return {
         type: RECIEVE_PROPERTIES,
         properties:json,
+        recievedAt: Date.now()
+    }
+}
+
+function receiveInspections(json) {
+    return {
+        type: RECIEVE_INSPECTIONS,
+        inspections:json,
         recievedAt: Date.now()
     }
 }
@@ -43,7 +53,13 @@ export const fetchSuburbs = () => dispatch => {
     return fetch(`http://localhost:7900/suburbs`)
       .then(response => response.json())
       .then(json => dispatch(receiveSuburbs(json)))
-  }
+}
+
+export const fetchInspections = () => dispatch => {
+    return fetch(`http://localhost:7900/inspections`)
+      .then(response => response.json())
+      .then(json => dispatch(receiveInspections(json)))
+}
 
 export const fetchProperties = (suburb) => dispatch => {
     let url = 'http://localhost:7900/' + suburb + '/properties'
