@@ -26,7 +26,9 @@ const properties = (state = {
     switch(action.type) {
       case RECIEVE_PROPERTIES:
         for(let p of action.properties) {
-          p.eliminated = p.eliminated || ""
+          p.eliminated = p.eliminated || "";
+          p.visited = p.visited || false;
+          p.renovations = p.renovations || "";
         }
         return {
           properties:action.properties

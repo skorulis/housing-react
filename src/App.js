@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
+import 'bulma/css/bulma.css'
 import { Route } from 'react-router-dom'
+import {Container} from 'bloomer'
 
 import NavigationComponent from './component/NavigationComponent';
 import AllSuburbsContainer from './container/AllSuburbsContainer';
@@ -20,13 +22,13 @@ const SinglePropertyRouteComponent = ({match}) => (
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <Container>
         <NavigationComponent />
         <Route exact path="/" render={() => <AllSuburbsContainer  />} />
         <Route path="/properties/:suburb" component={PropertyListRouteComponent} />
         <Route path="/inspections" component={InspectionListContainer} />
         <Route path="/property/:suburb/:propertyId" component={SinglePropertyRouteComponent} />
-      </div>
+      </Container>
     );
   }
 }
