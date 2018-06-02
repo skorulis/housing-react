@@ -1,4 +1,4 @@
-import {RECIEVE_PROPERTIES, EDIT_PROPERTY_SAVE, UPDATE_PROPERTY_FIELD, REPLACE_PROPERTY,RECIEVE_SINGLE_PROPERTY} from "../actions"
+import {RECIEVE_PROPERTIES, EDIT_PROPERTY_SAVE, UPDATE_PROPERTY_FIELD, REPLACE_PROPERTY} from "../actions"
 
 const propertyIndex = (propertyId,properties) => {
   for(let i = 0; i < properties.length; ++i) {
@@ -32,11 +32,6 @@ const properties = (state = {
         }
         return {
           properties:action.properties
-        }
-      case RECIEVE_SINGLE_PROPERTY:
-        return {
-          properties:state.properties,
-          single:action.property
         }
       case EDIT_PROPERTY_SAVE:
         return state;

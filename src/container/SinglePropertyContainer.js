@@ -25,7 +25,11 @@ class SinglePropertyContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {property:state.properties.single}
+  let property;
+  if (state.properties.properties && state.properties.properties.length > 0) {
+    property = state.properties.properties[0];
+  }
+  return {property:property}
 }
 
 export default connect(mapStateToProps)(SinglePropertyContainer);

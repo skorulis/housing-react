@@ -8,7 +8,8 @@ class InspectionListContainer extends React.Component {
     return <div>
       <ul key="inspections">
         {this.props.inspections.map((i) => {
-          return <InspectionComponent inspection={i} dispatch={this.props.dispatch} />
+          let key = i.propertyId + "-" + i.startTimeDisplay;
+          return <InspectionComponent key={key} inspection={i} dispatch={this.props.dispatch} />
         })}
       </ul>
     </div>
