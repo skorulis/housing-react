@@ -84,6 +84,13 @@ return fetch(url)
     .then(json => dispatch(receiveProperties(json)))
 }
 
+export const refreshProperty = (property) => dispatch => {
+    let url = property.links.update;
+return fetch(url)
+    .then(response => response.json())
+    .then(json => dispatch(replaceProperty(json)))
+}
+
 export const setPropertyFields = (property) => dispatch => {
     let url = property.links.setFields;
     return fetch(url,

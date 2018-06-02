@@ -1,5 +1,5 @@
 import React from 'react';
-import {updatePropertyField,setPropertyFields} from "../actions"
+import {updatePropertyField, setPropertyFields, refreshProperty} from "../actions"
 import {Field, Control, Input, Label, Checkbox, Button} from 'bloomer'
 
 class EditPropertyComponent extends React.Component {
@@ -8,9 +8,12 @@ class EditPropertyComponent extends React.Component {
         dispatch(setPropertyFields(property))
     }
 
+    handleRefreshClick = e => {
+        const {dispatch, property} = this.props
+        dispatch(refreshProperty(property))
+    }
+
     handleFieldChange = e => {
-        console.log(e.target);
-        console.log(e.target.checked);
         const {dispatch, property} = this.props
         dispatch(updatePropertyField(property.id,e.target.name,e.target.value));
     }
@@ -36,7 +39,8 @@ class EditPropertyComponent extends React.Component {
                 <Checkbox name="visited" defaultChecked={property.visited} onChange={this.handleFieldChange}> Vistied </Checkbox>
             </Control>
         </Field>
-        <Button onClick={this.handleSaveClick} isColor='primary'>Save</Button>    
+        <Button onClick={this.handleSaveClick} isColor='primary'>Save</Button>
+        <Button onClick={this.handleRefreshClick} isColor='primary'>Refresh</Button>    
         </div>
         
     }
