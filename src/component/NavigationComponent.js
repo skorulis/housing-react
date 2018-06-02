@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import {Navbar} from 'bloomer'
+import {Navbar, NavbarItem} from 'bloomer'
 
 class NavigationComponent extends React.Component {
   render() {
-    return <Navbar>
-        <Link to="/">Home</Link> 
-        <Link to="/inspections">Inspections</Link>
+    return <Navbar style={{ border: 'solid 1px #00D1B2', margin: '10px' }}>
+        <NavbarItem>
+          <Link to="/">Home</Link> 
+        </NavbarItem>
+        <NavbarItem>
+          <Link to="/inspections">Inspections</Link>
+        </NavbarItem>
         </Navbar>
   }
 }
