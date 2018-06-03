@@ -28,6 +28,7 @@ class App extends Component {
         <Route path="/properties/:suburb" component={PropertyListRouteComponent} />
         <Route path="/inspections" component={InspectionListContainer} />
         <Route path="/property/:suburb/:propertyId" component={SinglePropertyRouteComponent} />
+        <Route path="/allProperties" component={PropertyListContainer} />
       </Container>
     );
   }

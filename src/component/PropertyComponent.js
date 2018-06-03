@@ -29,6 +29,9 @@ class PropertyComponent extends React.Component {
           {property.firstSeen && 
             <p>Age: {age(property.firstSeen)} days</p>
           }
+          {property.lastUpdated && 
+            <p>Updated: {age(property.lastUpdated)} days</p>
+          }
           {property.isSold && <Tag isColor='danger'>Sold</Tag> }
           
           {property.travel.map((t) => {

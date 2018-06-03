@@ -1,6 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import {updatePropertyField, setPropertyFields, refreshProperty} from "../actions"
-import {Field, Control, Input, Label, Checkbox, Button} from 'bloomer'
+import {Field, Control, Input, Label, Checkbox, Button, Title, Select} from 'bloomer'
+
 
 class EditPropertyComponent extends React.Component {
     handleSaveClick = e => {
@@ -39,6 +41,20 @@ class EditPropertyComponent extends React.Component {
                 <Checkbox name="visited" defaultChecked={property.visited} onChange={this.handleFieldChange}> Vistied </Checkbox>
             </Control>
         </Field>
+
+        <Title>Features</Title>
+        {this.props.features.map((f)=> {
+            return <Field key={f.name}>
+                <Label>{f.name}</Label>
+                <Select>
+                    <option>-</option>
+                    {f.options.map((o) => {
+                        return <option>{o.optionName}</option>
+                    })}
+                </Select>
+            </Field>
+        })}
+
         <Button onClick={this.handleSaveClick} isColor='primary'>Save</Button>
         <Button onClick={this.handleRefreshClick} isColor='primary'>Refresh</Button>    
         </div>
@@ -47,5 +63,11 @@ class EditPropertyComponent extends React.Component {
 }
 
 
-export default EditPropertyComponent;
+const mapStateToProps = state => {
+    console.log(state.features.all)
+    return {features:state.features.all}
+}
+  
+export default connect(mapStateToProps)(EditPropertyComponent);
+
 

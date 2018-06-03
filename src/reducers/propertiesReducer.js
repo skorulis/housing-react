@@ -29,6 +29,10 @@ const properties = (state = {
           p.eliminated = p.eliminated || "";
           p.visited = p.visited || false;
           p.renovations = p.renovations || "";
+          if (!p.travel) {
+            p.travel = [];
+            console.log(p);
+          }
         }
         return {
           properties:action.properties

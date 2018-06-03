@@ -11,6 +11,9 @@ class NavigationComponent extends React.Component {
         <NavbarItem>
           <Link to="/inspections">Inspections</Link>
         </NavbarItem>
+        <NavbarItem>
+          <Link to="/allProperties">All properties</Link>
+        </NavbarItem>
         </Navbar>
   }
 }

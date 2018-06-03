@@ -11,7 +11,9 @@ import { routerReducer, routerMiddleware, ConnectedRouter } from 'react-router-r
 import suburbReducer from "./reducers/suburbReducer"
 import propertiesReducer from "./reducers/propertiesReducer"
 import inspectionReducer from "./reducers/inspectionReducer"
+import featureReducer from "./reducers/featureReducer"
 import App from './App';
+import { fetchFeatures } from './actions';
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -24,6 +26,7 @@ const reducers = combineReducers({
   suburbs:suburbReducer,
   properties:propertiesReducer,
   inspections:inspectionReducer,
+  features:featureReducer,
   router: routerReducer
 })
 
@@ -35,6 +38,8 @@ const store = createStore(
     historyMiddleware
   )
 )
+
+store.dispatch(fetchFeatures())
 
 ReactDOM.render(
   <Provider store={store}>

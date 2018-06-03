@@ -1,12 +1,20 @@
 import React from 'react';
 import PropertyComponent from "../component/PropertyComponent"
+import { Title} from 'bloomer'
 import { connect } from 'react-redux'
-import { fetchProperties } from '../actions';
+import { fetchProperties, fetchAllProperties } from '../actions';
 
 class PropertyListContainer extends React.Component {
+  
   render() {
+    let header;
+    if (this.props.suburbName) {
+      header = <Title>Properties for {this.props.suburbName}</Title>
+    } else {
+      header = <Title>All properties</Title>
+    }
     return <div>
-      <h2>Properties for {this.props.suburbName}</h2>
+      {header}
       <ul key="properties">
         {this.props.properties.map((p) => {
           let key = p.id + "-item";
@@ -18,7 +26,11 @@ class PropertyListContainer extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchProperties(this.props.suburbName))
+    if (this.props.suburbName) {
+      dispatch(fetchProperties(this.props.suburbName))
+    } else {
+      dispatch(fetchAllProperties())
+    }
   }
 }
 

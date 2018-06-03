@@ -8,6 +8,7 @@ export const UPDATE_PROPERTY_FIELD = "UPDATE_PROPERTY_FIELD";
 export const REPLACE_PROPERTY = "REPLACE_PROPERTY";
 
 export const RECIEVE_INSPECTIONS = "RECIEVE_INSPECTIONS";
+export const RECIEVE_FEATURES = "RECIEVE_FEATURES";
 
 function receiveSuburbs(json) {
     return {
@@ -29,6 +30,14 @@ function receiveInspections(json) {
     return {
         type: RECIEVE_INSPECTIONS,
         inspections:json,
+        recievedAt: Date.now()
+    }
+}
+
+function receiveList(json,action) {
+    return {
+        type: action,
+        items:json,
         recievedAt: Date.now()
     }
 }
@@ -63,6 +72,13 @@ export const fetchInspections = () => dispatch => {
       .then(json => dispatch(receiveInspections(json)))
 }
 
+export const fetchFeatures = () => dispatch => {
+    let url = window.location.origin.replace("3000","7900") + "/features"
+    return fetch(url)
+      .then(response => response.json())
+      .then(json => dispatch(receiveList(json,RECIEVE_FEATURES)))
+}
+
 export const fetchSingleProperty = (suburb,propertyId) => dispatch => {
     let url = window.location.origin.replace("3000","7900") + "/property/" + suburb + "/" + propertyId
 return fetch(url)
@@ -72,6 +88,13 @@ return fetch(url)
 
 export const fetchProperties = (suburb) => dispatch => {
     let url = window.location.origin.replace("3000","7900") + "/" + suburb + '/properties'
+return fetch(url)
+    .then(response => response.json())
+    .then(json => dispatch(receiveProperties(json)))
+}
+
+export const fetchAllProperties = () => dispatch => {
+    let url = window.location.origin.replace("3000","7900") + '/allProperties'
 return fetch(url)
     .then(response => response.json())
     .then(json => dispatch(receiveProperties(json)))
