@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {updatePropertyField, setPropertyFields, refreshProperty} from "../actions"
-import {Field, Control, Input, Label, Checkbox, Button, Title, Select} from 'bloomer'
+import {Field, Control, Input, Label, Checkbox, Button} from 'bloomer'
 
 
 class EditPropertyComponent extends React.Component {

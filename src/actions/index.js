@@ -4,6 +4,7 @@ export const RECIEVE_PROPERTIES = 'RECIEVE_PROPERTIES';
 export const EDIT_PROPERTY_SAVE = 'EDIT_PROPERTY_SAVE';
 
 export const UPDATE_PROPERTY_FIELD = "UPDATE_PROPERTY_FIELD";
+export const UPDATE_FEATURE = "UPDATE_FEATURE";
 
 export const REPLACE_PROPERTY = "REPLACE_PROPERTY";
 
@@ -50,6 +51,15 @@ export const updatePropertyField = (propertyId,field,value) => {
         propertyId:propertyId,
         field:field,
         value:value
+    }
+}
+
+export const updateFeature = (propertyId,featureName,featureValue) => {
+    return {
+        type:UPDATE_FEATURE,
+        propertyId:propertyId,
+        featureName:featureName,
+        featureValue:featureValue
     }
 }
 

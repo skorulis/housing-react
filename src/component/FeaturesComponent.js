@@ -1,36 +1,34 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
-import { Link } from 'react-router-dom'
-import { Title, Button, Field, Label, Select, Columns, Column, Box} from 'bloomer'
+import { Title, Label, Select, Columns, Column, Box} from 'bloomer'
+import { updateFeature } from '../actions';
 
 class FeaturesComponent extends React.Component {
-  isSelected(featureName,optionName) {
+  getDefaultValue(featureName) {
     let property = this.props.property;
     if (!property.features) {
-      return false;
+      return "-";
     }
-    let selected = property.features[featureName];
-    return optionName === selected;
+    return property.features[featureName]
   }
 
+  handleSelectionChange = e => {
+    const {dispatch, property} = this.props;
+    dispatch(updateFeature(property.id,e.target.name,e.target.value));
+  }
 
   render() {
-    let property = this.props.property;
     return <Box>
         <Title>Features</Title>
         <Columns>
         {this.props.features.map((f)=> {
           return <Column key={f.name}>
             <Label>{f.name}</Label>
-            <Select>
+            <Select name={f.name} onChange={this.handleSelectionChange} defaultValue={this.getDefaultValue(f.name)}>
                 <option >-</option>
                 {f.options.map((o) => {
-                    if(this.isSelected(f.name,o.optionName)) {
-                      return <option key={o.optionName} selected>{o.optionName}</option>
-                    } else {
-                      return <option key={o.optionName}>{o.optionName}</option>
-                    }
+                    return <option key={o.optionName}>{o.optionName} ({o.value})</option>
                 })}
             </Select>
           </Column>
