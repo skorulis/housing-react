@@ -2,7 +2,7 @@ import React from 'react';
 import PropertyComponent from "../component/PropertyComponent"
 import { Title} from 'bloomer'
 import { connect } from 'react-redux'
-import { fetchProperties, fetchAllProperties } from '../actions';
+import { fetchProperties, fetchAllProperties, fetchSingleProperty } from '../actions';
 
 class PropertyListContainer extends React.Component {
   
@@ -27,7 +27,11 @@ class PropertyListContainer extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props
     if (this.props.suburbName) {
-      dispatch(fetchProperties(this.props.suburbName))
+      if (this.props.propertyId) {
+        dispatch(fetchSingleProperty(this.props.suburbName,this.props.propertyId))
+      } else {
+        dispatch(fetchProperties(this.props.suburbName))
+      }
     } else {
       dispatch(fetchAllProperties())
     }

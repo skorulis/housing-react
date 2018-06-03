@@ -27,13 +27,13 @@ class EditPropertyComponent extends React.Component {
         <Field>
             <Label>Eliminated</Label>
             <Control>
-                <Input name="eliminated" type="text" placeholder='Why is this property ruled out' value={property.eliminated} onChange={this.handleFieldChange} />
+                <Input name="eliminated" type="text" placeholder='Why is this property ruled out' defaultValue={property.eliminated} onChange={this.handleFieldChange} />
             </Control>
         </Field>
         <Field>
             <Label>Renovations</Label>
             <Control>
-                <Input name="renovations" type="text" placeholder='Estimated initial renovation cost' value={property.renovations} onChange={this.handleFieldChange} />
+                <Input name="renovations" type="text" placeholder='Estimated initial renovation cost' defaultValue={property.renovations} onChange={this.handleFieldChange} />
             </Control>
         </Field>
         <Field>
@@ -49,7 +49,7 @@ class EditPropertyComponent extends React.Component {
                 <Select>
                     <option>-</option>
                     {f.options.map((o) => {
-                        return <option>{o.optionName}</option>
+                        return <option key={o.optionName}>{o.optionName}</option>
                     })}
                 </Select>
             </Field>
@@ -64,7 +64,6 @@ class EditPropertyComponent extends React.Component {
 
 
 const mapStateToProps = state => {
-    console.log(state.features.all)
     return {features:state.features.all}
 }
   

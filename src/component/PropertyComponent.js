@@ -33,6 +33,7 @@ class PropertyComponent extends React.Component {
             <p>Updated: {age(property.lastUpdated)} days</p>
           }
           {property.isSold && <Tag isColor='danger'>Sold</Tag> }
+          {property.underOffer && <Tag isColor='success'>Under Offer</Tag> }
           
           {property.travel.map((t) => {
             return <p key={t.name}>{t.name}: {t.duration} Minutes</p>

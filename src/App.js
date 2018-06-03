@@ -9,14 +9,13 @@ import NavigationComponent from './component/NavigationComponent';
 import AllSuburbsContainer from './container/AllSuburbsContainer';
 import PropertyListContainer from './container/PropertyListContainer';
 import InspectionListContainer from "./container/InspectionListContainer";
-import SinglePropertyContainer from "./container/SinglePropertyContainer"
 
 const PropertyListRouteComponent = ({match}) => (
   <PropertyListContainer suburbName={match.params.suburb}  />
 );
 
 const SinglePropertyRouteComponent = ({match}) => (
-  <SinglePropertyContainer suburbName={match.params.suburb} propertyId={match.params.propertyId}  />
+  <PropertyListContainer suburbName={match.params.suburb} propertyId={match.params.propertyId}  />
 );
 
 class App extends Component {
