@@ -13,9 +13,10 @@ class SuburbComponent extends React.Component {
         <Title>{suburb.name}</Title>
       </Column>
       <Column isSize='1/3'>
-        <Button>
-          <Link to={link}> {suburb.count} Properties </Link>
-        </Button>
+      <Link to={link}>
+        <Button isColor='info' > {suburb.count} Properties </Button>
+      </Link>
+        
       </Column>
     </Columns>
       </li>

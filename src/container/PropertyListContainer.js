@@ -12,7 +12,7 @@ class PropertyListContainer extends React.Component {
       let linkURL = "https://www.realestate.com.au/buy/with-2-bedrooms-between-0-800000-in-" + this.props.suburbName + "%2c+nsw+2216%3b/list-1?includeSurrounding=false";
       header = <div>
         <Title>Properties for {this.props.suburbName}</Title>
-        <Button><a href={linkURL}> Find More properties</a></Button>
+        <Button  isColor="primary" href={linkURL}>Find More properties</Button>
       </div>
     } else {
       header = <Title>All properties</Title>

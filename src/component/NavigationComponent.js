@@ -26,9 +26,9 @@ class NavigationComponent extends React.Component {
         </NavbarItem>
         <NavbarItem>
           <Input onChange={this.handleSearchFieldChange} placeholder="Lookup property by Id" />
-          <Button>
-          <Link to={lookupURL}> Search</Link>
-          </Button>
+          <Link to={lookupURL}>
+            <Button isColor="primary"> Search </Button>
+          </Link>
         </NavbarItem>
         </Navbar>
   }

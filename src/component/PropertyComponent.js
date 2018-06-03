@@ -2,6 +2,7 @@ import React from 'react';
 import { Columns, Column, Tag  } from 'bloomer';
 
 import EditPropertyComponent from './EditPropertyComponent';
+import FeaturesComponent from "./FeaturesComponent";
 
 function age(timeString) {
   let seenDate = new Date(timeString)
@@ -43,8 +44,9 @@ class PropertyComponent extends React.Component {
         <Column isSize='1/3'>
           <EditPropertyComponent key={editKey} property={property} dispatch={this.props.dispatch} />
         </Column>
-      
+          
       </Columns>
+      <FeaturesComponent property={property} />
       </li>
   }
 }

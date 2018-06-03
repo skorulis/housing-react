@@ -42,18 +42,6 @@ class EditPropertyComponent extends React.Component {
             </Control>
         </Field>
 
-        <Title>Features</Title>
-        {this.props.features.map((f)=> {
-            return <Field key={f.name}>
-                <Label>{f.name}</Label>
-                <Select>
-                    <option>-</option>
-                    {f.options.map((o) => {
-                        return <option key={o.optionName}>{o.optionName}</option>
-                    })}
-                </Select>
-            </Field>
-        })}
 
         <Button onClick={this.handleSaveClick} isColor='primary'>Save</Button>
         <Button onClick={this.handleRefreshClick} isColor='primary'>Refresh</Button>    
