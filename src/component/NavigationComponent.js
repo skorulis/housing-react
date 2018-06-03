@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import {Navbar, NavbarItem} from 'bloomer'
+import {Navbar, NavbarItem, Input, Button} from 'bloomer'
 
 class NavigationComponent extends React.Component {
   render() {
@@ -13,6 +13,10 @@ class NavigationComponent extends React.Component {
         </NavbarItem>
         <NavbarItem>
           <Link to="/allProperties">All properties</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Input placeholder="Lookup property by Id" />
+          <Button >Search</Button>
         </NavbarItem>
         </Navbar>
   }
