@@ -12,6 +12,7 @@ import suburbReducer from "./reducers/suburbReducer"
 import propertiesReducer from "./reducers/propertiesReducer"
 import inspectionReducer from "./reducers/inspectionReducer"
 import featureReducer from "./reducers/featureReducer"
+import searchReducer from "./reducers/searchReducer"
 import App from './App';
 import { fetchFeatures } from './actions';
 
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   properties:propertiesReducer,
   inspections:inspectionReducer,
   features:featureReducer,
+  search:searchReducer,
   router: routerReducer
 })
 

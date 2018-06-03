@@ -10,8 +10,8 @@ class SuburbComponent extends React.Component {
     return <li key={suburb.name}>
         <Title>{suburb.name}</Title>
         <Button>
-        <Link to={link}> {suburb.count} Properties </Link>
-          </Button>
+          <Link to={link}> {suburb.count} Properties </Link>
+        </Button>
         
       </li>
   }

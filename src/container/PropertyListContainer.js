@@ -1,15 +1,19 @@
 import React from 'react';
 import PropertyComponent from "../component/PropertyComponent"
-import { Title} from 'bloomer'
+import { Title, Button } from 'bloomer'
 import { connect } from 'react-redux'
-import { fetchProperties, fetchAllProperties, fetchSingleProperty } from '../actions';
+import { fetchProperties, fetchAllProperties, fetchSingleProperty, lookupProperty } from '../actions';
 
 class PropertyListContainer extends React.Component {
   
   render() {
     let header;
     if (this.props.suburbName) {
-      header = <Title>Properties for {this.props.suburbName}</Title>
+      let linkURL = "https://www.realestate.com.au/buy/with-2-bedrooms-between-0-800000-in-" + this.props.suburbName + "%2c+nsw+2216%3b/list-1?includeSurrounding=false";
+      header = <div>
+        <Title>Properties for {this.props.suburbName}</Title>
+        <Button><a href={linkURL}> Find More properties</a></Button>
+      </div>
     } else {
       header = <Title>All properties</Title>
     }
@@ -33,7 +37,11 @@ class PropertyListContainer extends React.Component {
         dispatch(fetchProperties(this.props.suburbName))
       }
     } else {
-      dispatch(fetchAllProperties())
+      if (this.props.propertyId) {
+        dispatch(lookupProperty(this.props.propertyId));
+      } else {
+        dispatch(fetchAllProperties())
+      }
     }
   }
 }

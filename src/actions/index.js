@@ -10,6 +10,8 @@ export const REPLACE_PROPERTY = "REPLACE_PROPERTY";
 export const RECIEVE_INSPECTIONS = "RECIEVE_INSPECTIONS";
 export const RECIEVE_FEATURES = "RECIEVE_FEATURES";
 
+export const UPDATE_SEARCH_ID = "UPDATE_SEARCH_ID";
+
 function receiveSuburbs(json) {
     return {
         type: RECEIVE_SUBURBS,
@@ -48,6 +50,13 @@ export const updatePropertyField = (propertyId,field,value) => {
         propertyId:propertyId,
         field:field,
         value:value
+    }
+}
+
+export const updateSearchField = (propertyId) => {
+    return {
+        type:UPDATE_SEARCH_ID,
+        propertyId:propertyId
     }
 }
 
@@ -105,6 +114,13 @@ export const refreshProperty = (property) => dispatch => {
 return fetch(url)
     .then(response => response.json())
     .then(json => dispatch(replaceProperty(json)))
+}
+
+export const lookupProperty = (propertyId) => dispatch => {
+    let url = window.location.origin.replace("3000","7900") + '/property/' + propertyId + "/update"
+return fetch(url)
+    .then(response => response.json())
+    .then(json => dispatch(receiveProperties([json])))
 }
 
 export const setPropertyFields = (property) => dispatch => {

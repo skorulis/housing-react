@@ -18,6 +18,10 @@ const SinglePropertyRouteComponent = ({match}) => (
   <PropertyListContainer suburbName={match.params.suburb} propertyId={match.params.propertyId}  />
 );
 
+const LookupPropertyRouteComponent = ({match}) => (
+  <PropertyListContainer propertyId={match.params.propertyId}  />
+);
+
 class App extends Component {
   render() {
     return (
@@ -28,6 +32,7 @@ class App extends Component {
         <Route path="/inspections" component={InspectionListContainer} />
         <Route path="/property/:suburb/:propertyId" component={SinglePropertyRouteComponent} />
         <Route path="/allProperties" component={PropertyListContainer} />
+        <Route path="/lookup/:propertyId" component={LookupPropertyRouteComponent} />
       </Container>
     );
   }

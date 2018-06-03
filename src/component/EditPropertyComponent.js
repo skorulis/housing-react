@@ -62,7 +62,6 @@ class EditPropertyComponent extends React.Component {
     }
 }
 
-
 const mapStateToProps = state => {
     return {features:state.features.all}
 }
