@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Navbar, NavbarItem, Input, Button} from 'bloomer'
 
-import {updateSearchField,lookupProperty} from "../actions"
+import {updateSearchField} from "../actions"
 
 class NavigationComponent extends React.Component {
 
