@@ -42,6 +42,12 @@ class EditPropertyComponent extends React.Component {
             </Control>
         </Field>
         <Field>
+            <Label>Comments</Label>
+            <Control>
+                <Input name="comments" type="text" placeholder='General comments' defaultValue={property.comments} onChange={this.handleFieldChange} />
+            </Control>
+        </Field>
+        <Field>
             <Control>
                 <Checkbox name="visited" defaultChecked={property.visited} onChange={this.handleCheckboxChange}> Vistied </Checkbox>
                 <Checkbox name="favourite" defaultChecked={property.favourite} onChange={this.handleCheckboxChange}> Favourite </Checkbox>

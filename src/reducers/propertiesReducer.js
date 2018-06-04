@@ -43,6 +43,7 @@ const properties = (state = {
           p.eliminated = p.eliminated || "";
           p.visited = p.visited || false;
           p.renovations = p.renovations || "";
+          p.comments = p.comments || "";
           if (!p.travel) {
             p.travel = [];
             console.log(p);

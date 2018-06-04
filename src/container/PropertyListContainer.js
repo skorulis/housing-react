@@ -9,7 +9,7 @@ class PropertyListContainer extends React.Component {
   render() {
     let header;
     if (this.props.suburbName) {
-      let linkURL = "https://www.realestate.com.au/buy/with-2-bedrooms-between-0-800000-in-" + this.props.suburbName + "%2c+nsw+2216%3b/list-1?includeSurrounding=false";
+      let linkURL = "https://www.realestate.com.au/buy/with-2-bedrooms-between-0-800000-in-" + this.props.suburbName + "%3b+nsw%3b/list-1?includeSurrounding=false";
       header = <div>
         <Title>Properties for {this.props.suburbName}</Title>
         <Button  isColor="primary" href={linkURL}>Find More properties</Button>

@@ -33,6 +33,7 @@ class PropertyComponent extends React.Component {
           {property.lastUpdated && 
             <p>Updated: {age(property.lastUpdated)} days</p>
           }
+          
           {property.isSold && <Tag isColor='danger'>Sold</Tag> }
           {property.missing && <Tag isColor='danger'>Property Removed</Tag> }
           {property.underOffer && <Tag isColor='success'>Under Offer</Tag> }
