@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom'
-import { Title, Tag} from 'bloomer'
+import { Title, Tag, Button, Columns, Column, Box } from 'bloomer'
 
 class InspectionComponent extends React.Component {
   render() {
@@ -9,10 +9,19 @@ class InspectionComponent extends React.Component {
     let key = inspection.propertyId + "-" + inspection;
     let propURL = "/property/" + inspection.suburb + "/" + inspection.propertyId;
     return <li key={key}>
-        <Title>{inspection.startTimeDisplay} - {inspection.endTimeDisplay} {inspection.suburb}</Title>
-        <p>{inspection.address}</p>
-        <Link to={propURL} >Property details</Link>
-        {inspection.favourite && <Tag isColor="success">Favourite</Tag>}
+      <Box>
+      <Columns>
+        <Column>
+          <Title>{inspection.startTimeDisplay} - {inspection.endTimeDisplay} {inspection.suburb}</Title>
+          <p>{inspection.address}</p>
+          {inspection.comments && <p>{inspection.comments}</p>}
+        </Column>
+        <Column>
+          <Link to={propURL} ><Button isColor='info'>Property details</Button></Link>
+        </Column>
+      </Columns>
+      {inspection.favourite && <Tag isColor="success">Favourite</Tag>}
+      </Box>
       </li>
   }
 }

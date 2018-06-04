@@ -17,6 +17,13 @@ class PropertyComponent extends React.Component {
     let editKey = property.id + "-edit";
     let key = property.id + "-comp";
 
+    let price;
+    if (property.originalPrice) {
+      price = <p>Price: {property.estimatedPrice} ({property.originalPrice}) </p>
+    } else {
+      price = <p>Price: {property.estimatedPrice} </p>
+    }
+
     return <li className="property" key={key}>
       <Columns>
         <Column isSize='1/3'>
@@ -24,7 +31,7 @@ class PropertyComponent extends React.Component {
         </Column>
         <Column className="property-details" isSize='1/3'>
           <a href={property.url}>{property.address}</a>
-          <p>Price: {property.estimatedPrice} </p>
+          {price}
           <p>Score: {property.score}</p>
           <p>Simple score: {property.simpleScore} </p>
           {property.firstSeen && 
