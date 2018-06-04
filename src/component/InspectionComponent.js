@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom'
-import { Title} from 'bloomer'
+import { Title, Tag} from 'bloomer'
 
 class InspectionComponent extends React.Component {
   render() {
@@ -12,6 +12,7 @@ class InspectionComponent extends React.Component {
         <Title>{inspection.startTimeDisplay} - {inspection.endTimeDisplay} {inspection.suburb}</Title>
         <p>{inspection.address}</p>
         <Link to={propURL} >Property details</Link>
+        {inspection.favourite && <Tag isColor="success">Favourite</Tag>}
       </li>
   }
 }

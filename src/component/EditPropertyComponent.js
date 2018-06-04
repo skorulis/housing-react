@@ -20,6 +20,11 @@ class EditPropertyComponent extends React.Component {
         dispatch(updatePropertyField(property.id,e.target.name,e.target.value));
     }
 
+    handleCheckboxChange = e => {
+        const {dispatch, property} = this.props
+        dispatch(updatePropertyField(property.id,e.target.name,e.target.checked));
+    }
+
     render() {
         let property = this.props.property;
         let key = property.id + (property.isEditing ? "editing" : "plain");
@@ -38,10 +43,10 @@ class EditPropertyComponent extends React.Component {
         </Field>
         <Field>
             <Control>
-                <Checkbox name="visited" defaultChecked={property.visited} onChange={this.handleFieldChange}> Vistied </Checkbox>
+                <Checkbox name="visited" defaultChecked={property.visited} onChange={this.handleCheckboxChange}> Vistied </Checkbox>
+                <Checkbox name="favourite" defaultChecked={property.favourite} onChange={this.handleCheckboxChange}> Favourite </Checkbox>
             </Control>
         </Field>
-
 
         <Button onClick={this.handleSaveClick} isColor='primary'>Save</Button>
         <Button onClick={this.handleRefreshClick} isColor='primary'>Refresh</Button>    

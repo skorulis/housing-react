@@ -28,7 +28,7 @@ class FeaturesComponent extends React.Component {
             <Select name={f.name} onChange={this.handleSelectionChange} defaultValue={this.getDefaultValue(f.name)}>
                 <option >-</option>
                 {f.options.map((o) => {
-                    return <option key={o.optionName}>{o.optionName} ({o.value})</option>
+                    return <option key={o.optionName} value={o.optionName}>{o.optionName} ({o.value})</option>
                 })}
             </Select>
           </Column>

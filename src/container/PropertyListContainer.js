@@ -15,7 +15,11 @@ class PropertyListContainer extends React.Component {
         <Button  isColor="primary" href={linkURL}>Find More properties</Button>
       </div>
     } else {
-      header = <Title>All properties</Title>
+      if (this.props.propertyId) {
+        header = <Title>Lookup {this.props.propertyId} </Title>
+      } else {
+        header = <Title>All properties</Title>
+      }
     }
     return <div>
       {header}
@@ -28,8 +32,18 @@ class PropertyListContainer extends React.Component {
     </div>
   }
 
-  componentDidMount() {
+  fetchData() {
+    
+
+    if (this.state) {
+      if (this.state.lastSuburb === this.props.suburbName && this.state.lastId === this.props.propertyId) {
+        return; //Don't double up on calls
+      }
+    }
+    
     const { dispatch } = this.props
+    this.setState({lastSuburb:this.props.suburbName,lastId:this.props.propertyId})
+
     if (this.props.suburbName) {
       if (this.props.propertyId) {
         dispatch(fetchSingleProperty(this.props.suburbName,this.props.propertyId))
@@ -43,6 +57,14 @@ class PropertyListContainer extends React.Component {
         dispatch(fetchAllProperties())
       }
     }
+  }
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  componentDidUpdate() {
+    this.fetchData()
   }
 }
 

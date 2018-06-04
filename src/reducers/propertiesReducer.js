@@ -1,4 +1,6 @@
-import {RECIEVE_PROPERTIES, EDIT_PROPERTY_SAVE, UPDATE_PROPERTY_FIELD, REPLACE_PROPERTY, UPDATE_FEATURE} from "../actions"
+import {RECIEVE_PROPERTIES, EDIT_PROPERTY_SAVE, 
+  UPDATE_PROPERTY_FIELD, REPLACE_PROPERTY, 
+  UPDATE_FEATURE,REQUEST_PROPERTIES} from "../actions"
 
 const propertyIndex = (propertyId,properties) => {
   for(let i = 0; i < properties.length; ++i) {
@@ -23,7 +25,7 @@ const changeProperty = function(id,properties,field,value) {
 const changeFeature = function(id,properties,featureName,featureValue) {
   properties = properties.slice();
   let prop = findProperty(id,properties)
-  if (!prop.features) {
+  if (!prop.features || Array.isArray(prop.features)) {
     prop.features = {};
   }
   prop.features[featureName] = featureValue;
@@ -34,6 +36,8 @@ const properties = (state = {
     properties: []
   },action) => {
     switch(action.type) {
+      case REQUEST_PROPERTIES:
+        return {properties:[]}
       case RECIEVE_PROPERTIES:
         for(let p of action.properties) {
           p.eliminated = p.eliminated || "";
