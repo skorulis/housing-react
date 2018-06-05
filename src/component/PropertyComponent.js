@@ -16,12 +16,20 @@ class PropertyComponent extends React.Component {
     let property = this.props.property;
     let editKey = property.id + "-edit";
     let key = property.id + "-comp";
+    let size = property.size;
 
     let price;
     if (property.originalPrice) {
       price = <p>Price: {property.estimatedPrice} ({property.originalPrice}) </p>
     } else {
       price = <p>Price: {property.estimatedPrice} </p>
+    }
+
+    let sizeElement;
+    if (size) {
+      if (size.total) {
+        sizeElement = <p>Total Size: {size.total.value} sqm</p>
+      }
     }
 
     return <li className="property" key={key}>
@@ -40,6 +48,7 @@ class PropertyComponent extends React.Component {
           {property.lastUpdated && 
             <p>Updated: {age(property.lastUpdated)} days</p>
           }
+          {sizeElement}
           
           {property.isSold && <Tag isColor='danger'>Sold</Tag> }
           {property.missing && <Tag isColor='danger'>Property Removed</Tag> }

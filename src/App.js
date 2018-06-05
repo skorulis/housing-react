@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
 import 'bulma/css/bulma.css'
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router'
 import {Container} from 'bloomer'
+import { withRouter } from 'react-router-dom'
 
 import NavigationComponent from './component/NavigationComponent';
 import AllSuburbsContainer from './container/AllSuburbsContainer';
@@ -23,6 +24,7 @@ const LookupPropertyRouteComponent = ({match}) => (
 );
 
 class App extends Component {
+
   render() {
     return (
       <Container>
@@ -39,7 +41,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return {suburbs:state.suburbs.suburbs,router:state.router}
+  return {suburbs:state.suburbs.suburbs}
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))
