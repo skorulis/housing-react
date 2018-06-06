@@ -23,6 +23,10 @@ const LookupPropertyRouteComponent = ({match}) => (
   <PropertyListContainer propertyId={match.params.propertyId}  />
 );
 
+const SuburbInspectionsRouteComponent = ({match}) => (
+  <InspectionListContainer suburbName={match.params.suburb}  />
+);
+
 class App extends Component {
 
   render() {
@@ -31,7 +35,8 @@ class App extends Component {
         <NavigationComponent />
         <Route exact path="/" render={() => <AllSuburbsContainer  />} />
         <Route path="/properties/:suburb" component={PropertyListRouteComponent} />
-        <Route path="/inspections" component={InspectionListContainer} />
+        <Route path="/inspections/:suburb" component={SuburbInspectionsRouteComponent} />
+        <Route exact path="/inspections" component={InspectionListContainer} />
         <Route path="/property/:suburb/:propertyId" component={SinglePropertyRouteComponent} />
         <Route path="/allProperties" component={PropertyListContainer} />
         <Route path="/lookup/:propertyId" component={LookupPropertyRouteComponent} />

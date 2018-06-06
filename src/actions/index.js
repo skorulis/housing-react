@@ -91,8 +91,12 @@ export const fetchSuburbs = () => dispatch => {
       .then(json => dispatch(receiveSuburbs(json)))
 }
 
-export const fetchInspections = () => dispatch => {
+export const fetchInspections = (suburb) => dispatch => {
+    console.log("fetch")
     let url = window.location.origin.replace("3000","7900") + "/inspections"
+    if (suburb) {
+      url = url + "/" + suburb;
+    }
     return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveInspections(json)))

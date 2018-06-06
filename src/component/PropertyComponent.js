@@ -32,6 +32,11 @@ class PropertyComponent extends React.Component {
       }
     }
 
+    let shopTravel;
+    if (property.shop && property.shop.travel) {
+      shopTravel = property.shop.travel.duration
+    }
+
     return <li className="property" key={key}>
       <Columns>
         <Column isSize='1/3'>
@@ -49,6 +54,7 @@ class PropertyComponent extends React.Component {
             <p>Updated: {age(property.lastUpdated)} days</p>
           }
           {sizeElement}
+          {shopTravel && <p>Shops: {shopTravel} minutes walk </p>}
           
           {property.isSold && <Tag isColor='danger'>Sold</Tag> }
           {property.missing && <Tag isColor='danger'>Property Removed</Tag> }

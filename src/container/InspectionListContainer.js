@@ -6,8 +6,14 @@ import {Title} from "bloomer"
 
 class InspectionListContainer extends React.Component {
   render() {
+    let suburbTitle;
+    if (this.props.suburbName) {
+      suburbTitle = <Title>{this.props.inspections.length} Inspections in {this.props.suburbName}</Title>
+    } else {
+      suburbTitle = <Title>{this.props.inspections.length} Inspections </Title>
+    }
     return <div>
-      <Title>{this.props.inspections.length} Inspections </Title>
+      {suburbTitle}
       <ul key="inspections">
         {this.props.inspections.map((i) => {
           let key = i.propertyId + "-" + i.startTimeDisplay;
@@ -21,7 +27,7 @@ class InspectionListContainer extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchInspections())
+    dispatch(fetchInspections(this.props.suburbName))
   }
 }
 
