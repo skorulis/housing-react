@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchProperties, fetchAllProperties, fetchSingleProperty, lookupProperty } from '../actions';
 
 class PropertyListContainer extends React.Component {
-  
+
   render() {
     let header;
     if (this.props.suburbName) {
@@ -26,7 +26,7 @@ class PropertyListContainer extends React.Component {
       <ul key="properties">
         {this.props.properties.map((p) => {
           let key = p.id + "-item";
-          return <PropertyComponent key={key} property={p} dispatch={this.props.dispatch} />
+          return <PropertyComponent key={key} property={p} index={1} dispatch={this.props.dispatch} />
         })}
       </ul>
     </div>

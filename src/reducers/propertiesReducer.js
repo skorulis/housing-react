@@ -44,6 +44,7 @@ const properties = (state = {
           p.visited = p.visited || false;
           p.renovations = p.renovations || "";
           p.comments = p.comments || "";
+          p.rating = p.rating || 0;
           if (!p.travel) {
             p.travel = [];
             console.log(p);

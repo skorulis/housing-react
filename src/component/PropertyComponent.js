@@ -55,7 +55,7 @@ class PropertyComponent extends React.Component {
 
     let shopTravel;
     if (property.shop && property.shop.travel) {
-      shopTravel = property.shop.travel.duration
+      shopTravel = <p>Shops: {property.shop.travel.duration} minutes walk </p>
     }
 
     return <li className="property" key={key}>
@@ -75,7 +75,7 @@ class PropertyComponent extends React.Component {
             <p>Updated: {age(property.lastUpdated)} days</p>
           }
           {sizeElement}
-          {shopTravel && <p>Shops: {shopTravel} minutes walk </p>}
+          {shopTravel}
           {this.yearlyCosts()}
           {this.virtualCosts()}
 
