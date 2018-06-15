@@ -12,6 +12,27 @@ function age(timeString) {
 }
 
 class PropertyComponent extends React.Component {
+
+  yearlyCosts() {
+    let property = this.props.property;
+    if (property.costs.yearly) {
+      return <p>Yearly costs: ${property.costs.yearly} </p>
+    }
+  }
+
+  virtualCosts() {
+    let property = this.props.property;
+    let total = 0;
+    let virtualCosts = property.costs.virtual;
+    if (!virtualCosts) {
+      return null;
+    }
+    total += virtualCosts.features || 0; 
+    total += virtualCosts.travel;
+    total += virtualCosts.shopping;
+    return <p>Lifestyle costs: ${total}</p>
+  }
+
   render() {
     let property = this.props.property;
     let editKey = property.id + "-edit";
@@ -55,7 +76,9 @@ class PropertyComponent extends React.Component {
           }
           {sizeElement}
           {shopTravel && <p>Shops: {shopTravel} minutes walk </p>}
-          
+          {this.yearlyCosts()}
+          {this.virtualCosts()}
+
           {property.isSold && <Tag isColor='danger'>Sold</Tag> }
           {property.missing && <Tag isColor='danger'>Property Removed</Tag> }
           {property.underOffer && <Tag isColor='success'>Under Offer</Tag> }
@@ -63,6 +86,8 @@ class PropertyComponent extends React.Component {
           {property.travel.map((t) => {
             return <p key={t.name}>{t.name}: {t.duration} Minutes</p>
           })}
+          {property.roomDetails && <p>{property.roomDetails}</p>}
+          {property.auctionDate && <p>Auction Date: <b>{property.auctionDate}</b></p>}
         </Column>
         <Column isSize='1/3'>
           <EditPropertyComponent key={editKey} property={property} dispatch={this.props.dispatch} />
