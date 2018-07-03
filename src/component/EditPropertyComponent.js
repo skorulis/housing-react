@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {updatePropertyField, setPropertyFields, refreshProperty} from "../actions"
 import {Field, Control, Input, Label, Checkbox, Button} from 'bloomer'
 import StarRatingComponent from 'react-star-rating-component';
+import { Link } from 'react-router-dom'
 
 class EditPropertyComponent extends React.Component {
     handleSaveClick = e => {
@@ -33,6 +34,7 @@ class EditPropertyComponent extends React.Component {
     render() {
         let property = this.props.property;
         let key = property.id + (property.isEditing ? "editing" : "plain");
+        let url = "/raw/" + property.id
         return <div key={key}>
         <Field>
             <Label>Eliminated</Label>
@@ -64,6 +66,7 @@ class EditPropertyComponent extends React.Component {
 
         <Button onClick={this.handleSaveClick} isColor='primary'>Save</Button>
         <Button onClick={this.handleRefreshClick} isColor='primary'>Refresh</Button>    
+        <Link to={url}><Button>Edit Raw</Button></Link>
         </div>
         
     }

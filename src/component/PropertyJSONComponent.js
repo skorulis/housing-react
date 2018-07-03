@@ -1,21 +1,30 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {TextArea, Button} from "bloomer"
-import { lookupProperty } from '../actions';
+import { lookupProperty, setPropertyFields } from '../actions';
 
 class PropertyJSONComponent extends React.Component {
 
   constructor(props) {
     super(props);
     this.savePressed = this.savePressed.bind(this);
+    this.state = {property:{},invalid:false};
   }
 
-  handleTextChange() {
-
+  handleTextChange = event => {
+    let text = event.target.value;
+    try {
+      let changedObject = JSON.parse(text);
+      this.setState({property:changedObject,invalid:false})
+    } catch(err) {
+      this.setState({invalid:true,property:{}})
+    }
   }
 
   savePressed() {
-
+    const { dispatch } = this.props;
+    const property = this.state.property;
+    dispatch(setPropertyFields(property))
   }
 
   componentDidMount() {
@@ -37,6 +46,7 @@ class PropertyJSONComponent extends React.Component {
     return <div>
       {body}
       <Button onClick={this.savePressed} isColor='primary'>Save</Button>
+      {this.state.invalid && <p>Invalid data</p>}
     </div>
   }
 
