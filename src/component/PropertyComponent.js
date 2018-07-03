@@ -15,13 +15,16 @@ class PropertyComponent extends React.Component {
 
   yearlyCosts() {
     let property = this.props.property;
-    if (property.costs.yearly) {
+    if (property.costs && property.costs.yearly) {
       return <p>Yearly costs: ${property.costs.yearly} </p>
     }
   }
 
   virtualCosts() {
     let property = this.props.property;
+    if (!property.costs) {
+      return null;
+    }
     let total = 0;
     let virtualCosts = property.costs.virtual;
     if (!virtualCosts) {
@@ -87,6 +90,7 @@ class PropertyComponent extends React.Component {
             return <p key={t.name}>{t.name}: {t.duration} Minutes</p>
           })}
           {property.roomDetails && <p>{property.roomDetails}</p>}
+          {property.nextInspection && <p>Next Inspection: <b>{property.nextInspection}</b></p>}
           {property.auctionDate && <p>Auction Date: <b>{property.auctionDate}</b></p>}
         </Column>
         <Column isSize='1/3'>

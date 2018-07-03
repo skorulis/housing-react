@@ -1,8 +1,9 @@
 import React from 'react';
 import PropertyComponent from "../component/PropertyComponent"
+import PropertyFilterComponent from "../component/PropertyFilterComponent"
 import { Title, Button } from 'bloomer'
 import { connect } from 'react-redux'
-import { fetchProperties, fetchAllProperties, fetchSingleProperty, lookupProperty } from '../actions';
+import { fetchProperties, fetchSingleProperty, lookupProperty } from '../actions';
 
 class PropertyListContainer extends React.Component {
 
@@ -18,7 +19,7 @@ class PropertyListContainer extends React.Component {
       if (this.props.propertyId) {
         header = <Title>Lookup {this.props.propertyId} </Title>
       } else {
-        header = <Title>All properties</Title>
+        header = <PropertyFilterComponent />
       }
     }
     return <div>
@@ -33,8 +34,6 @@ class PropertyListContainer extends React.Component {
   }
 
   fetchData() {
-    
-
     if (this.state) {
       if (this.state.lastSuburb === this.props.suburbName && this.state.lastId === this.props.propertyId) {
         return; //Don't double up on calls
@@ -54,7 +53,7 @@ class PropertyListContainer extends React.Component {
       if (this.props.propertyId) {
         dispatch(lookupProperty(this.props.propertyId));
       } else {
-        dispatch(fetchAllProperties())
+        //dispatch(fetchAllProperties())
       }
     }
   }

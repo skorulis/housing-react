@@ -125,10 +125,21 @@ return fetch(url)
     .then(json => dispatch(receiveProperties(json)))
 }
 
-export const fetchAllProperties = () => dispatch => {
+export const fetchAllProperties = (filter) => dispatch => {
     dispatch(requestProperties())
     let url = window.location.origin.replace("3000","7900") + '/allProperties'
-return fetch(url)
+    let params;
+    if (filter) {
+        params = {
+            method:"post",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(filter)
+        }
+    } else {
+        params = {method:"get"}
+    }
+
+return fetch(url,params)
     .then(response => response.json())
     .then(json => dispatch(receiveProperties(json)))
 }

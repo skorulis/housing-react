@@ -10,6 +10,7 @@ import NavigationComponent from './component/NavigationComponent';
 import AllSuburbsContainer from './container/AllSuburbsContainer';
 import PropertyListContainer from './container/PropertyListContainer';
 import InspectionListContainer from "./container/InspectionListContainer";
+import PropertyJSONComponent from "./component/PropertyJSONComponent";
 
 const PropertyListRouteComponent = ({match}) => (
   <PropertyListContainer suburbName={match.params.suburb}  />
@@ -27,6 +28,10 @@ const SuburbInspectionsRouteComponent = ({match}) => (
   <InspectionListContainer suburbName={match.params.suburb}  />
 );
 
+const PropertyJSONRouteComponent = ({match}) => (
+  <PropertyJSONComponent propertyId={match.params.propertyId}  />
+);
+
 class App extends Component {
 
   render() {
@@ -40,6 +45,7 @@ class App extends Component {
         <Route path="/property/:suburb/:propertyId" component={SinglePropertyRouteComponent} />
         <Route path="/allProperties" component={PropertyListContainer} />
         <Route path="/lookup/:propertyId" component={LookupPropertyRouteComponent} />
+        <Route path="/raw/:propertyId" component={PropertyJSONRouteComponent} />
       </Container>
     );
   }
