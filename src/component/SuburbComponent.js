@@ -19,7 +19,11 @@ class SuburbComponent extends React.Component {
       <Link to={link}>
         <Button isColor='info' > <b>{available} Available </b>, {sold} Sold</Button>
       </Link>
-        
+      </Column>
+      <Column isSize='1/3'>
+      <Link to={suburb.links.realEstateSearch}>
+        <Button isColor='danger'>More properties</Button>
+      </Link>
       </Column>
     </Columns>
       </li>
