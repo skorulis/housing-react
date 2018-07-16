@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {updatePropertyField, setPropertyFields, refreshProperty} from "../actions"
 import {Field, Control, Input, Label, Checkbox, Button} from 'bloomer'
-import StarRatingComponent from 'react-star-rating-component';
+import ReactStars from 'react-stars'
 import { Link } from 'react-router-dom'
 
 class EditPropertyComponent extends React.Component {
@@ -61,7 +61,7 @@ class EditPropertyComponent extends React.Component {
             </Control>
         </Field>
         <Field>
-            <StarRatingComponent name="rating" starCount={5} value={this.props.property.rating} onStarClick={this.onStarClick} />
+            <ReactStars value={this.props.property.rating} onChange={this.onStarClick} />
         </Field>
 
         <Button onClick={this.handleSaveClick} isColor='primary'>Save</Button>
