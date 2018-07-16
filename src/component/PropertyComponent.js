@@ -20,6 +20,13 @@ class PropertyComponent extends React.Component {
     }
   }
 
+  strataCosts() {
+    let property = this.props.property;
+    if (property.costs && property.costs.strata) {
+      return <p>Strata: ${property.costs.strata.value}</p>
+    }
+  }
+
   virtualCosts() {
     let property = this.props.property;
     if (!property.costs) {
@@ -81,6 +88,7 @@ class PropertyComponent extends React.Component {
           {shopTravel}
           {this.yearlyCosts()}
           {this.virtualCosts()}
+          {this.strataCosts()}
 
           {property.isSold && <Tag isColor='danger'>Sold</Tag> }
           {property.missing && <Tag isColor='danger'>Property Removed</Tag> }
