@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom'
 import { Title, Tag, Button, Columns, Column, Box } from 'bloomer'
+import PropertyDetailsComponent from "./PropertyDetailsComponent"
 
 class InspectionComponent extends React.Component {
   render() {
@@ -12,6 +13,9 @@ class InspectionComponent extends React.Component {
     return <li key={key}>
       <Box>
       <Columns>
+        <Column isSize='1/3'>
+          <img src={metrics.image} alt="property main" />
+        </Column>
         <Column>
           {metrics.estimatedPrice && <Title>${metrics.estimatedPrice}</Title> }
           <Title>{inspection.startTimeDisplay} - {inspection.endTimeDisplay} {metrics.suburb}</Title>
