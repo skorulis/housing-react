@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom'
 import { Title, Tag, Button, Columns, Column, Box } from 'bloomer'
-import PropertyDetailsComponent from "./PropertyDetailsComponent"
+import ReactStars from 'react-stars'
 
 class InspectionComponent extends React.Component {
   render() {
@@ -21,6 +21,7 @@ class InspectionComponent extends React.Component {
           <Title>{inspection.startTimeDisplay} - {inspection.endTimeDisplay} {metrics.suburb}</Title>
           <p>{inspection.address}</p>
           {metrics.comments && <p>{metrics.comments}</p>}
+          <ReactStars value={metrics.rating} edit={false} />
         </Column>
         <Column>
           <Link to={propURL} ><Button isColor='info'>Property details</Button></Link>
