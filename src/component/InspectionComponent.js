@@ -13,6 +13,7 @@ class InspectionComponent extends React.Component {
       <Box>
       <Columns>
         <Column>
+          {metrics.estimatedPrice && <Title>${metrics.estimatedPrice}</Title> }
           <Title>{inspection.startTimeDisplay} - {inspection.endTimeDisplay} {metrics.suburb}</Title>
           <p>{inspection.address}</p>
           {metrics.comments && <p>{metrics.comments}</p>}
