@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Label, Select, Button, Columns, Column, Box } from 'bloomer'
+import { Label, Select, Button, Columns, Column, Box, Control,Input } from 'bloomer'
 
 import {fetchAllProperties} from "../actions"
 
@@ -13,6 +13,13 @@ class PropertyFilterComponent extends React.Component {
 
   handleSelectionChange = e => {
     console.log(e.target);
+    let filter = this.state.filter;
+    filter[e.target.name] = e.target.value;
+    this.state = {filter:filter};
+    console.log(this.state);
+  }
+
+  handleFieldChange = e => {
     let filter = this.state.filter;
     filter[e.target.name] = e.target.value;
     this.state = {filter:filter};
@@ -36,6 +43,12 @@ class PropertyFilterComponent extends React.Component {
         obj[n] = false;
       }
     }
+    obj["minAge"] = this.state.filter["minAge"];
+    obj["minUpdated"] = this.state.filter["minUpdated"];
+    obj["maxTravel"] = this.state.filter["maxTravel"];
+    obj["stars"] = this.state.filter["stars"];
+    obj["suburb"] = this.state.filter["suburb"];
+
     console.log(obj);
     
     dispatch(fetchAllProperties({filter:obj}))
@@ -61,6 +74,38 @@ class PropertyFilterComponent extends React.Component {
             </Select>
           </Column>
         })}
+      </Columns>
+      <Columns>
+        <Column>
+          <Label>Min Age</Label>
+              <Control>
+                  <Input name="minAge" type="text" placeholder='Minimum Age' onChange={this.handleFieldChange} />
+              </Control>
+          </Column>
+          <Column>
+          <Label>Max Travel Time</Label>
+              <Control>
+                  <Input name="maxTravel" type="text" placeholder='Maximum Travel Time' onChange={this.handleFieldChange} />
+              </Control>
+          </Column>
+          <Column>
+          <Label>Min last updated</Label>
+              <Control>
+                  <Input name="minUpdated" type="text" placeholder='Minimum Last updated' onChange={this.handleFieldChange} />
+              </Control>
+          </Column>
+          <Column>
+          <Label>Star rating</Label>
+              <Control>
+                  <Input name="stars" type="text" placeholder='Star rating' onChange={this.handleFieldChange} />
+              </Control>
+          </Column>
+          <Column>
+          <Label>Suburb</Label>
+              <Control>
+                  <Input name="suburb" type="text" placeholder='Suburb' onChange={this.handleFieldChange} />
+              </Control>
+          </Column>
       </Columns>
       <Button onClick={this.updatePressed}>Update</Button>
       </Box>
