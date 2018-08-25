@@ -1,21 +1,25 @@
 import React from 'react';
-import SuburbComponent from "../component/SuburbComponent"
-import {fetchSuburbs} from "../actions"
+import {searchSuburb} from "../actions"
 import { connect } from 'react-redux'
+import SearchResultComponent from '../component/SearchResultComponent'
 
 class SearchResultsContainer extends React.Component {
   render() {
-    return <p>Search results would go here</p>
+    return <ul>
+      {this.props.searchResults.map((result) => {
+          return <SearchResultComponent property={result} />
+        })}
+      </ul>
   }
 
   componentDidMount() {
-    //const { dispatch } = this.props
-    //dispatch(fetchSuburbs())
+    const { dispatch } = this.props
+    dispatch(searchSuburb(this.props.suburbName))
   }
 }
 
 const mapStateToProps = state => {
-  return {suburbs:state.suburbs.suburbs}
+  return {searchResults:state.search.searchResults}
 }
 
 export default connect(mapStateToProps)(SearchResultsContainer);
