@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Label, Select, Button, Columns, Column, Box, Control,Input } from 'bloomer'
+import { Label, Select, Button, Columns, Column, Box, Control,Input,Title } from 'bloomer'
 
 import {fetchAllProperties} from "../actions"
 
@@ -108,12 +108,13 @@ class PropertyFilterComponent extends React.Component {
           </Column>
       </Columns>
       <Button onClick={this.updatePressed}>Update</Button>
+      <Title>Property count: {this.props.properties.length}</Title>
       </Box>
   }
 }
 
 const mapStateToProps = state => {
-  return {}
+  return {properties:state.properties.properties}
 }
 
 export default connect(mapStateToProps)(PropertyFilterComponent);
