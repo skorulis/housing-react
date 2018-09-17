@@ -33,6 +33,10 @@ const PropertyJSONRouteComponent = ({match}) => (
   <PropertyJSONComponent propertyId={match.params.propertyId}  />
 );
 
+const SearchResultsRouteComponent = ({match}) => (
+  <SearchResultsContainer suburbName={match.params.suburb}  />
+);
+
 class App extends Component {
 
   render() {
@@ -47,7 +51,7 @@ class App extends Component {
         <Route path="/allProperties" component={PropertyListContainer} />
         <Route path="/lookup/:propertyId" component={LookupPropertyRouteComponent} />
         <Route path="/raw/:propertyId" component={PropertyJSONRouteComponent} />
-        <Route path="/search/:suburb" component={SearchResultsContainer} />
+        <Route path="/search/:suburb" component={SearchResultsRouteComponent} />
       </Container>
     );
   }
