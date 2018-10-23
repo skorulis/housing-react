@@ -8,6 +8,7 @@ export const UPDATE_PROPERTY_FIELD = "UPDATE_PROPERTY_FIELD";
 export const UPDATE_FEATURE = "UPDATE_FEATURE";
 
 export const REPLACE_PROPERTY = "REPLACE_PROPERTY";
+export const RECEIVE_RELATED_PROPERTIES = "RECEIVE_RELATED_PROPERTIES"
 
 export const RECIEVE_INSPECTIONS = "RECIEVE_INSPECTIONS";
 export const RECIEVE_FEATURES = "RECIEVE_FEATURES";
@@ -99,6 +100,13 @@ export const replaceProperty = (property) => {
     return {
         type:REPLACE_PROPERTY,
         property:property
+    }
+}
+
+export const receivedRelatedProperties = (json) => {
+    return {
+        type:RECEIVE_RELATED_PROPERTIES,
+        properties:json.properties
     }
 }
 
@@ -202,4 +210,11 @@ export const setPropertyFields = (property) => dispatch => {
         body:JSON.stringify(property)})
     .then(response => response.json())
     .then(json => dispatch(replaceProperty(json)))
+}
+
+export const getRelatedProperties = (address) => dispatch => {
+    let url = window.location.origin.replace("3000","7900") + "/property/query?address=" + address;
+    return fetch(url)
+    .then(response => response.json())
+    .then(json => dispatch(receivedRelatedProperties(json)))
 }
