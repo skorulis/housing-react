@@ -15,6 +15,7 @@ export const RECIEVE_FEATURES = "RECIEVE_FEATURES";
 export const UPDATE_SEARCH_ID = "UPDATE_SEARCH_ID";
 
 export const RECEIVE_SEARCH = "RECEIVE_SEARCH"
+export const CLEAR_SEARCH = "CLEAR_SEARCH"
 
 function receiveSuburbs(json) {
     return {
@@ -28,6 +29,13 @@ function receiveSearchResults(json) {
     return {
         type: RECEIVE_SEARCH,
         results: json,
+        recievedAt: Date.now()
+    }
+}
+
+function clearSearch() {
+    return {
+        type: CLEAR_SEARCH,
         recievedAt: Date.now()
     }
 }
@@ -103,6 +111,16 @@ export const fetchSuburbs = () => dispatch => {
 
 export const searchSuburb = (suburb) => dispatch => {
     let url = window.location.origin.replace("3000","7900") + "/search/" + suburb
+    dispatch(clearSearch())
+    return fetch(url)
+      .then(response => response.json())
+      .then(json => dispatch(receiveSearchResults(json)))
+}
+
+export const searchNext = (path) => dispatch => {
+    console.log(path)
+    let url = window.location.origin.replace("3000","7900") + path
+    console.log(url)
     return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveSearchResults(json)))
