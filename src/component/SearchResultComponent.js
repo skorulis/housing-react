@@ -9,7 +9,21 @@ class SearchResultComponent extends React.Component {
     let key = property.id + "-comp";
     let image = property.mainImage.server + "/320x240" + property.mainImage.uri
     let features = property.generalFeatures;
-    let baseDetails = "🛏" + features.bedrooms.value + "🚿" + features.bathrooms.value + "🚗" + features.parkingSpaces.value
+    let baseDetails = "";
+    let price = property.price ? property.price.display : "??";
+    
+    if (features) {
+      if (features.bedrooms) {
+        baseDetails += "🛏" + features.bedrooms.value;
+      }
+      if (features.bathrooms) {
+        baseDetails += "🚿" + features.bathrooms.value;
+      } 
+      if (features.parkingSpaces) {
+        baseDetails += "🚗" + features.parkingSpaces.value;
+      }
+    }
+      
     let address = property.address.streetAddress + " " + property.address.suburb
     
     return <li className="property" key={key}>
@@ -20,7 +34,7 @@ class SearchResultComponent extends React.Component {
         </a>
         </Column>
         <Column>
-        {property.price.display}<br/>
+        {price}<br/>
         {address}<br/>
         {baseDetails}
         </Column>

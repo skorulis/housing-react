@@ -13,7 +13,7 @@ const search = (state = {
     case RECEIVE_SEARCH:
     return {
       propertyId:state.propertyId,
-      searchResults:action.results
+      searchResults:action.results.properties
     }
     default:
       return state;

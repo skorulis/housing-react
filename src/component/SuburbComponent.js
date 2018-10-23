@@ -7,6 +7,7 @@ class SuburbComponent extends React.Component {
   render() {
     let suburb = this.props.suburb;
     let link = "/properties/" + suburb.name
+    let searchLink = "/search/" + suburb.name
     let sold = suburb.sold || 0;
     let removed = suburb.removed || 0;
     let available = suburb.count - sold - removed;
@@ -21,7 +22,7 @@ class SuburbComponent extends React.Component {
       </Link>
       </Column>
       <Column isSize='1/3'>
-      <Link to={suburb.links.realEstateSearch}>
+      <Link to={searchLink}>
         <Button isColor='danger'>More properties</Button>
       </Link>
       </Column>
