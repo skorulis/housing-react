@@ -1,5 +1,5 @@
 import React from 'react';
-import { Columns, Column, Tag  } from 'bloomer';
+import { Columns, Column} from 'bloomer';
 
 import EditPropertyComponent from './EditPropertyComponent';
 import FeaturesComponent from "./FeaturesComponent";

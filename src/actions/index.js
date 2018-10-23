@@ -104,9 +104,10 @@ export const replaceProperty = (property) => {
 }
 
 export const receivedRelatedProperties = (json) => {
+    console.log("Got related")
     return {
         type:RECEIVE_RELATED_PROPERTIES,
-        properties:json.properties
+        related:json.properties
     }
 }
 
@@ -212,7 +213,7 @@ export const setPropertyFields = (property) => dispatch => {
     .then(json => dispatch(replaceProperty(json)))
 }
 
-export const getRelatedProperties = (address) => dispatch => {
+export const fetchRelatedProperties = (address) => dispatch => {
     let url = window.location.origin.replace("3000","7900") + "/property/query?address=" + address;
     return fetch(url)
     .then(response => response.json())

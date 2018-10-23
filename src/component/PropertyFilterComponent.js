@@ -15,14 +15,14 @@ class PropertyFilterComponent extends React.Component {
     console.log(e.target);
     let filter = this.state.filter;
     filter[e.target.name] = e.target.value;
-    this.state = {filter:filter};
+    this.setState( {filter:filter} );
     console.log(this.state);
   }
 
   handleFieldChange = e => {
     let filter = this.state.filter;
     filter[e.target.name] = e.target.value;
-    this.state = {filter:filter};
+    this.setState( {filter:filter});
     console.log(this.state);
   }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Columns, Column, Tag  } from 'bloomer';
+import { Columns, Column } from 'bloomer';
 
 
 class SearchResultComponent extends React.Component {

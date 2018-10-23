@@ -12,13 +12,14 @@ import PropertyListContainer from './container/PropertyListContainer';
 import InspectionListContainer from "./container/InspectionListContainer";
 import PropertyJSONComponent from "./component/PropertyJSONComponent";
 import SearchResultsContainer from "./container/SearchResultsContainer";
+import SinglePropertyContainer from "./container/SinglePropertyContainer"
 
 const PropertyListRouteComponent = ({match}) => (
   <PropertyListContainer suburbName={match.params.suburb}  />
 );
 
 const SinglePropertyRouteComponent = ({match}) => (
-  <PropertyListContainer suburbName={match.params.suburb} propertyId={match.params.propertyId}  />
+  <SinglePropertyContainer suburbName={match.params.suburb} propertyId={match.params.propertyId}  />
 );
 
 const LookupPropertyRouteComponent = ({match}) => (
