@@ -23,7 +23,7 @@ const SinglePropertyRouteComponent = ({match}) => (
 );
 
 const LookupPropertyRouteComponent = ({match}) => (
-  <PropertyListContainer propertyId={match.params.propertyId}  />
+  <SinglePropertyContainer propertyId={match.params.propertyId}  />
 );
 
 const SuburbInspectionsRouteComponent = ({match}) => (

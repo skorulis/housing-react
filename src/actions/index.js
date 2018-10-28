@@ -213,8 +213,8 @@ export const setPropertyFields = (property) => dispatch => {
     .then(json => dispatch(replaceProperty(json)))
 }
 
-export const fetchRelatedProperties = (address) => dispatch => {
-    let url = window.location.origin.replace("3000","7900") + "/property/query?address=" + address;
+export const fetchRelatedProperties = (address,currentId) => dispatch => {
+    let url = window.location.origin.replace("3000","7900") + "/property/query?address=" + address + "&excluding=" + currentId;
     return fetch(url)
     .then(response => response.json())
     .then(json => dispatch(receivedRelatedProperties(json)))

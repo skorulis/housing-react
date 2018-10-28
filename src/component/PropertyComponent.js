@@ -27,7 +27,7 @@ class PropertyComponent extends React.Component {
         </Column>
           
       </Columns>
-      <FeaturesComponent property={property} />
+      {this.props.fullInfo && <FeaturesComponent property={property} />}
       </li>
   }
 }

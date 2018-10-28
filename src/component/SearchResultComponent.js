@@ -1,12 +1,13 @@
 import React from 'react';
 import { Columns, Column } from 'bloomer';
+import { Button } from 'bloomer/lib/elements/Button';
 
 
 class SearchResultComponent extends React.Component {
 
   render() {
     let property = this.props.property;
-    let key = property.id + "-comp";
+    let key = property.listingId + "-comp";
     let image = property.mainImage.server + "/320x240" + property.mainImage.uri
     let features = property.generalFeatures;
     let baseDetails = "";
@@ -36,7 +37,8 @@ class SearchResultComponent extends React.Component {
         <Column>
         {price}<br/>
         {address}<br/>
-        {baseDetails}
+        {baseDetails}<br/><br/>
+        <Button href={"/lookup/"+property.listingId}>Ingest</Button>
         </Column>
           
       </Columns>

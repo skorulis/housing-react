@@ -7,6 +7,18 @@ import { fetchSingleProperty, lookupProperty, fetchRelatedProperties } from '../
 
 class SinglePropertyContainer extends React.Component {
 
+  relatedProperties() {
+    if (this.props.related) {
+      return <ul>
+        {this.props.related.map((p) => {
+          let key = p.id + "-related";
+          return <PropertyComponent key={key} property={p} index={1} fullInfo={false} dispatch={this.props.dispatch} />
+        })}
+      </ul>
+    }
+    return null;
+  }
+
   render() {
     let header;
     if (this.props.suburbName) {
@@ -26,20 +38,20 @@ class SinglePropertyContainer extends React.Component {
       <ul key="properties">
         {this.props.properties.map((p) => {
           let key = p.id + "-item";
-          return <PropertyComponent key={key} property={p} index={1} dispatch={this.props.dispatch} />
+          return <PropertyComponent key={key} property={p} index={1} fullInfo={true} dispatch={this.props.dispatch} />
         })}
       </ul>
+      {this.relatedProperties()}
+
     </div>
   }
 
   fetchData() {
     const { dispatch } = this.props
 
-    console.log("NEW PROPS")
     if (this.props.properties.length > 0 && !this.props.related) {
       let address = this.props.properties[0].address;
-      dispatch(fetchRelatedProperties(address))
-      console.log("FETCH RELATED")
+      dispatch(fetchRelatedProperties(address,this.props.propertyId))
     }
 
     if (this.state) {
