@@ -40,10 +40,31 @@ class PropertyDetailsComponent extends React.Component {
     return <p>Lifestyle costs: ${total}</p>
   }
 
+  priceDetails(price) {
+    let sale;
+    if (price.sold) {
+      sale = <p>Sold: <b>{price.sold}</b></p>
+      if (!price.estimate) {
+        return sale
+      }
+    }
+    let low,high;
+    if (price.low && price.low != price.estimate) {
+      low = price.low + " < "
+    }
+    if (price.high && price.high != price.estimate) {
+      high = " < " + price.high
+    }
 
-  render() {
+    return <div><p>Estimate: {low} <b>{price.estimate}</b> {high}</p>{sale}</div>
+  }
+
+  priceInformation() {
     let property = this.props.property;
-    let size = property.size;
+
+    if (property.price) {
+      return this.priceDetails(property.price)
+    }
 
     let price;
     if (property.originalPrice) {
@@ -51,6 +72,14 @@ class PropertyDetailsComponent extends React.Component {
     } else {
       price = <p>Price: {property.estimatedPrice} </p>
     }
+
+    return price
+  }
+
+
+  render() {
+    let property = this.props.property;
+    let size = property.size;
 
     let sizeElement;
     if (size) {
@@ -66,7 +95,7 @@ class PropertyDetailsComponent extends React.Component {
 
     return <div>
       <a href={property.url}>{property.address}</a>
-      {price}
+      {this.priceInformation()}
       <p>Score: {property.score}</p>
       <p>Simple score: {property.simpleScore} </p>
       {property.firstSeen && 
