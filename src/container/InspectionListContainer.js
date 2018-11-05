@@ -7,10 +7,15 @@ import {Title} from "bloomer"
 class InspectionListContainer extends React.Component {
   render() {
     let suburbTitle;
+    let dateTitle;
+    if (this.props.date) {
+      dateTitle = " on " + this.props.date.toLocaleString().slice(0,10)
+    }
+     
     if (this.props.suburbName) {
-      suburbTitle = <Title>{this.props.inspections.length} Inspections in {this.props.suburbName}</Title>
+      suburbTitle = <Title>{this.props.inspections.length} Inspections in {this.props.suburbName} {dateTitle}</Title>
     } else {
-      suburbTitle = <Title>{this.props.inspections.length} Inspections </Title>
+      suburbTitle = <Title>{this.props.inspections.length} Inspections {dateTitle}</Title>
     }
     return <div>
       {suburbTitle}
@@ -32,7 +37,7 @@ class InspectionListContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {inspections:state.inspections.all}
+  return {inspections:state.inspections.all,date:state.inspections.date}
 }
 
 export default connect(mapStateToProps)(InspectionListContainer);

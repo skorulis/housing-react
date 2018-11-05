@@ -58,7 +58,7 @@ function requestProperties() {
 function receiveInspections(json) {
     return {
         type: RECIEVE_INSPECTIONS,
-        inspections:json,
+        result:json,
         recievedAt: Date.now()
     }
 }
